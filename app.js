@@ -3,12 +3,18 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { DB_URL } = require('./src/config/db.config');
 
 const router = require('./src/routes/index');
 
 const app = express();
 
+const corsOptions = {
+  origin: '*',
+}
+
+app.use(cors(corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,7 +29,7 @@ const connectDB = async () => {
       autoIndex: true // default: true
     });
 
-    console.log(`Connected database: ${con.connection.host}`)
+    console.log(`Connected to MongoDB, port: ${con.connection.port}`)
   } catch (err) {
     console.log(err);
     process.exit(1);
