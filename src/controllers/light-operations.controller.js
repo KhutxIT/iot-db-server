@@ -2,10 +2,8 @@ const { LightOperationsService } = require('../services');
 const catchAsync = require('../utils/catchAsync')
 
 const createLightOperations = catchAsync(async (req, res) => {
-  let result = await LightOperationsService.createLightOperations(req.body);
-  res.json({
-    data: result
-  });
+  await LightOperationsService.createLightOperations(req.body);
+  res.send();
 })
 
 const searchLightOperations = catchAsync(async (req, res) => {

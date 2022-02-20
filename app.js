@@ -4,17 +4,13 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { DB_URL } = require('./src/config/db.config');
+const { DB_URL } = require('./src/config/common.config');
 
 const router = require('./src/routes/index');
 
 const app = express();
 
-const corsOptions = {
-  origin: '*',
-}
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

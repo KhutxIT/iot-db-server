@@ -13,11 +13,11 @@ const registerToken = (data) => {
 }
 
 const signUp = async (data) => {
-  const { email } = data;
+  const { username } = data;
 
-  const emailUserSearch = await User.findOne({ email: email })
-  if (emailUserSearch && emailUserSearch._id)
-    throw new AppException('Email already in use');
+  const usernameSearch = await User.findOne({ username: username })
+  if (usernameSearch && usernameSearch._id)
+    throw new AppException('Username already in use');
 
   // Gen hash password
   const salt = await bcrypt.genSalt(12);

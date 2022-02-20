@@ -9,6 +9,7 @@ const lightOperations = new mongoose.Schema(
     },
     time: {
       type: Date,
+      default: Date.now(),
       required: true
     },
     light: {
